@@ -9,6 +9,8 @@ const main = function (): void {
     context.subscribe("interval.day", () => {
         fixRidePrices();
     });
+
+    fixRidePrices();
 };
 
 registerPlugin({

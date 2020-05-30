@@ -213,6 +213,7 @@
       context.subscribe("interval.day", function () {
         fixRidePrices();
       });
+      fixRidePrices();
     };
 
     registerPlugin({
