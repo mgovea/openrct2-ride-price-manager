@@ -19,28 +19,16 @@ Your troubles are long gone with ***Ride Price Manager***!
     - Guests are willing to pay more than $20 for some rides, but you can't set a price to more than $20 via the UI. This plugin can bypass that check.
 
 ## Installation
-To use the plugin, you'll have to build OpenRCT2 yourself for now. (At least until [PR #11712](https://github.com/OpenRCT2/OpenRCT2/pull/11712) is merged. If it is, download the latest development version & skip to Installation Step 3.)
-1. Follow the steps for building the game listed here: https://github.com/OpenRCT2/OpenRCT2#3-building-the-game
-  - You should probably build & test-launch the game to make sure it works before moving on.
-2. Include [PR #11712](https://github.com/OpenRCT2/OpenRCT2/pull/11712) via these substeps:
-  - Open the OpenRCT2 project file in Visual Studio
-  - Open a VS developer command prompt within Visual Studio via `Tools > Command Line > Developer Command Prompt`
-  - Run `git checkout develop`
-  - Run `git pull`
-  - Run `git fetch origin +refs/pull/11712/merge`
-  - Run `git checkout FETCH_HEAD`
-  - Rebuild OpenRCT2
-    - for 64-bit Windows for example, run `msbuild openrct2.proj /t:build /p:platform=x64`
-  - Optionally re-launch the game to test.
-3. Get the plugin!
-  - Download [`/build/ride-price-manager.js`](build/ride-price-manager.js)
-  - Put that file in your OpenRCT2 `plugin` folder.
-    - It's typically `C:\Users\{User}\Documents\OpenRCT2` on Windows.
-    - For more info, see [OpenRCT2's info on Plugins](https://github.com/OpenRCT2/OpenRCT2/blob/develop/distribution/scripting.md).
-4. Run the version of OpenRCT2 that you just built. And enjoy!
-5. Once in game, open the options window via the Map dropdown to configure the plugin.
-
-If you think that's pretty complicated, I agree. This will be much easier once [PR #11712](https://github.com/OpenRCT2/OpenRCT2/pull/11712) is merged.
+1. Get a new (enough) version of OpenRCT2 (v0.2.6-c3921d9 from 2020/05/29 or newer)
+   - Downloads are here: https://openrct2.org/downloads
+2. Download the plugin file
+   - Get [`/build/ride-price-manager.js`](build/ride-price-manager.js)
+   - Or just right-click [this link](https://raw.githubusercontent.com/mgovea/openrct2-ride-price-manager/master/build/ride-price-manager.js) & "Save link as"
+3. Put that file in your OpenRCT2 `plugin` folder.
+   - It's typically in `C:\Users\{User}\Documents\OpenRCT2` on Windows.
+   - For more info, see [OpenRCT2's info on Plugins](https://github.com/OpenRCT2/OpenRCT2/blob/develop/distribution/scripting.md).
+4. Run OpenRCT2!
+5. Once in a scenario, open the options window via the Map dropdown to configure the plugin.
 
 ## Possible Future Plans
 - Check if this works with server play
