@@ -9,12 +9,15 @@ const main = function (): void {
     context.subscribe("interval.day", () => {
         fixRidePrices();
     });
+
+    fixRidePrices();
 };
 
 registerPlugin({
     name: 'Ride Price Manager',
-    version: '1.0',
-    authors: ['MarkG'],
+    version: '1.1',
+    authors: ['MarkG', 'Sadret'],
     type: 'remote',
+    licence: 'MIT',
     main: main
 });

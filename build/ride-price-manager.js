@@ -8,12 +8,14 @@
     var parkAdmissionEnabled = configPrefix + 'parkAdmissionEnabled';
     var pluginEnabled = configPrefix + 'pluginEnabled';
     var unboundPriceEnabled = configPrefix + 'unboundPriceEnabled';
+    var ignoreFreeRidesEnabled = configPrefix + 'ignoreFreeRidesEnabled';
     var defaults = {
       goodValueEnabled: false,
       lazyTaxFactor: 0,
       parkAdmissionEnabled: false,
       pluginEnabled: true,
-      unboundPriceEnabled: false
+      unboundPriceEnabled: false,
+      ignoreFreeRidesEnabled: false
     };
     var lazyTaxOptions = [{
       s: '0%',
@@ -70,6 +72,12 @@
       },
       setUnboundPriceEnabled: function (v) {
         return context.sharedStorage.set(unboundPriceEnabled, v);
+      },
+      getIgnoreFreeRidesEnabled: function () {
+        return context.sharedStorage.get(ignoreFreeRidesEnabled, defaults.ignoreFreeRidesEnabled);
+      },
+      setIgnoreFreeRidesEnabled: function (v) {
+        return context.sharedStorage.set(ignoreFreeRidesEnabled, v);
       }
     };
 
@@ -89,6 +97,10 @@
       }
 
       if (ride.classification !== 'ride') {
+        return;
+      }
+
+      if (ride.price[0] === 0 && config.getIgnoreFreeRidesEnabled()) {
         return;
       }
 
@@ -126,9 +138,9 @@
       var windowDesc = {
         classification: 'ride_management',
         width: 240,
-        height: 110,
+        height: 125,
         title: 'Ride Price Manager',
-        widgets: [makePluginEnabledCheckbox(20), makeParkAdmissioCheckbox(45), makeGoodValueCheckbox(60), makeLazyTaxLabel(75), makeLazyTaxDropdown(75), makeUnboundPriceCheckbox(92)],
+        widgets: [makePluginEnabledCheckbox(20), makeParkAdmissioCheckbox(45), makeGoodValueCheckbox(60), makeLazyTaxLabel(75), makeLazyTaxDropdown(75), makeUnboundPriceCheckbox(92), makeIgnoreFreeRidesCheckbox(107)],
         onClose: function () {
           window = undefined;
         }
@@ -206,6 +218,12 @@
       });
     };
 
+    var makeIgnoreFreeRidesCheckbox = function (y) {
+      return makeCheckbox(y, "Having free transport rides has certain benefits.", "Ignore free rides", config.getIgnoreFreeRidesEnabled(), function (isChecked) {
+        config.setIgnoreFreeRidesEnabled(isChecked);
+      });
+    };
+
     var main = function () {
       ui.registerMenuItem("Ride Price Manager", function () {
         showWindow();
@@ -213,13 +231,15 @@
       context.subscribe("interval.day", function () {
         fixRidePrices();
       });
+      fixRidePrices();
     };
 
     registerPlugin({
       name: 'Ride Price Manager',
-      version: '1.0',
-      authors: ['MarkG'],
+      version: '1.1',
+      authors: ['MarkG', 'Sadret'],
       type: 'remote',
+      licence: 'MIT',
       main: main
     });
 
