@@ -1,4 +1,4 @@
-/// <reference path="C:/Users/Mark/source/repos/OpenRCT2/distribution/openrct2.d.ts" />
+/// <reference path="../../openrct2.d.ts" />
 
 import config, { LazyTaxOption, lazyTaxOptions } from "./config";
 
@@ -16,7 +16,7 @@ const showWindow = function (): void {
     const windowDesc: WindowDesc = {
         classification: 'ride_management',
         width: 240,
-        height: 110,
+        height: 125,
         title: 'Ride Price Manager',
         widgets: [
             makePluginEnabledCheckbox(20),
@@ -25,6 +25,7 @@ const showWindow = function (): void {
             makeLazyTaxLabel(75),
             makeLazyTaxDropdown(75),
             makeUnboundPriceCheckbox(92),
+            makeIgnoreFreeRidesCheckbox(107),
         ],
         onClose: () => { window = undefined; },
     };
@@ -125,6 +126,18 @@ const makeUnboundPriceCheckbox = function (y: number): CheckboxWidget {
         config.getUnboundPriceEnabled(),
         (isChecked: boolean) => {
             config.setUnboundPriceEnabled(isChecked);
+        },
+    );
+}
+
+const makeIgnoreFreeRidesCheckbox = function (y: number): CheckboxWidget {
+    return makeCheckbox(
+        y,
+        "Having free transport rides has certain benefits.",
+        `Ignore free rides`,
+        config.getIgnoreFreeRidesEnabled(),
+        (isChecked: boolean) => {
+            config.setIgnoreFreeRidesEnabled(isChecked);
         },
     );
 }

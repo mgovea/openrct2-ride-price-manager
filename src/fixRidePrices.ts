@@ -1,4 +1,4 @@
-/// <reference path="C:/Users/Mark/source/repos/OpenRCT2/distribution/openrct2.d.ts" />
+/// <reference path="../../openrct2.d.ts" />
 
 import config from "./config";
 
@@ -18,6 +18,11 @@ const updateRidePrice = function (ride: Ride): void {
 
     if (ride.classification !== 'ride') {
         // Ignore shops & facilites.
+        return;
+    }
+
+    if(ride.price[0] === 0 && config.getIgnoreFreeRidesEnabled()){
+        // Ignore free rides.
         return;
     }
 

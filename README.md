@@ -18,6 +18,7 @@ Your troubles are long gone with ***Ride Price Manager***!
   - add a "Lazy Tax" to decrease ride prices. This is for people that think this plugin is overpowered or just want to re-balance the game a little bit.
   - allow prices greater than $20.00 for high value rides.
     - Guests are willing to pay more than $20 for some rides, but you can't set a price to more than $20 via the UI. This allows the plugin to bypass that check.
+  - ignore free rides. It has certain benefits to make transport rides free, as guests will always take them, no matter how unhappy or unsatisfied they are.
 
 ## Installation
 1. Get a new (enough) version of OpenRCT2 (`v0.2.6-c3921d9` from 2020/05/29 or newer)
@@ -42,7 +43,7 @@ Your troubles are long gone with ***Ride Price Manager***!
 - Manage shop prices
   - To do this optimally, weather info would need to be added to the plugin API
   - Adding subscriptions for weather events in the API would help too
-  
+
 ## Feature Requests
 If you want to request a feature or find a bug, open an issue on GitHub (as long as one doesn't exist already for the same thing). And if you like the sound of one of the Possible Future Plans and want it to happen, it's cool if you open an issue for it.
 
