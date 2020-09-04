@@ -20,12 +20,12 @@ const showWindow = function (): void {
         title: 'Ride Price Manager',
         widgets: [
             makePluginEnabledCheckbox(20),
-            makeParkAdmissioCheckbox(45),
-            makeGoodValueCheckbox(60),
-            makeLazyTaxLabel(75),
-            makeLazyTaxDropdown(75),
-            makeUnboundPriceCheckbox(92),
-            makeIgnoreFreeRidesCheckbox(107),
+            makeIgnoreFreeRidesCheckbox(45),
+            makeParkAdmissioCheckbox(60),
+            makeGoodValueCheckbox(75),
+            makeLazyTaxLabel(90),
+            makeLazyTaxDropdown(90),
+            makeUnboundPriceCheckbox(107),
         ],
         onClose: () => { window = undefined; },
     };
@@ -50,6 +50,19 @@ const makeCheckbox = function (
         isChecked: isChecked,
         onChange: onChange,
     };
+}
+
+const makeIgnoreFreeRidesCheckbox = function (y: number): CheckboxWidget {
+    return makeCheckbox(
+        y,
+        "Prevent the plugin from affecting rides that are currently free. "
+        + "Recommended for transport rides & scenarios with a Park Entrance Fee.",
+        `Ignore free rides`,
+        config.getIgnoreFreeRidesEnabled(),
+        (isChecked: boolean) => {
+            config.setIgnoreFreeRidesEnabled(isChecked);
+        },
+    );
 }
 
 const makeGoodValueCheckbox = function (y: number): CheckboxWidget {
@@ -126,18 +139,6 @@ const makeUnboundPriceCheckbox = function (y: number): CheckboxWidget {
         config.getUnboundPriceEnabled(),
         (isChecked: boolean) => {
             config.setUnboundPriceEnabled(isChecked);
-        },
-    );
-}
-
-const makeIgnoreFreeRidesCheckbox = function (y: number): CheckboxWidget {
-    return makeCheckbox(
-        y,
-        "Having free transport rides has certain benefits.",
-        `Ignore free rides`,
-        config.getIgnoreFreeRidesEnabled(),
-        (isChecked: boolean) => {
-            config.setIgnoreFreeRidesEnabled(isChecked);
         },
     );
 }

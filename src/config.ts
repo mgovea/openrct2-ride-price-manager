@@ -4,19 +4,19 @@ const namespace = 'RidePriceManager';
 const configPrefix = namespace + '.';
 
 const goodValueEnabled = configPrefix + 'goodValueEnabled';
+const ignoreFreeRidesEnabled = configPrefix + 'ignoreFreeRidesEnabled';
 const lazyTaxFactor = configPrefix + 'lazyTaxFactor';
 const parkAdmissionEnabled = configPrefix + 'parkAdmissionEnabled';
 const pluginEnabled = configPrefix + 'pluginEnabled';
 const unboundPriceEnabled = configPrefix + 'unboundPriceEnabled';
-const ignoreFreeRidesEnabled = configPrefix + 'ignoreFreeRidesEnabled';
 
 const defaults = {
     goodValueEnabled: false,
+    ignoreFreeRidesEnabled: true,
     lazyTaxFactor: 0,
     parkAdmissionEnabled: false,
     pluginEnabled: true,
     unboundPriceEnabled: false,
-    ignoreFreeRidesEnabled: false,
 };
 
 type LazyTaxOption = { s: string, n: number };
@@ -42,6 +42,18 @@ const config = {
 
     setGoodValueEnabled: function (v: boolean) {
         return context.sharedStorage.set(goodValueEnabled, v);
+    },
+
+    /**
+     * Having free transport rides has certain benefits.
+     * This setting tells the plugin to ignore free rides.
+     */
+    getIgnoreFreeRidesEnabled: function (): boolean {
+        return context.sharedStorage.get(ignoreFreeRidesEnabled, defaults.ignoreFreeRidesEnabled);
+    },
+
+    setIgnoreFreeRidesEnabled: function (v: boolean) {
+        return context.sharedStorage.set(ignoreFreeRidesEnabled, v);
     },
 
     /**
@@ -92,18 +104,6 @@ const config = {
 
     setUnboundPriceEnabled: function (v: boolean) {
         return context.sharedStorage.set(unboundPriceEnabled, v);
-    },
-
-    /**
-     * Having free transport rides has certain benefits.
-     * This setting tells the plugin to ignore free rides.
-     */
-    getIgnoreFreeRidesEnabled: function (): boolean {
-        return context.sharedStorage.get(ignoreFreeRidesEnabled, defaults.ignoreFreeRidesEnabled);
-    },
-
-    setIgnoreFreeRidesEnabled: function (v: boolean) {
-        return context.sharedStorage.set(ignoreFreeRidesEnabled, v);
     },
 };
 

@@ -13,12 +13,12 @@ Your troubles are long gone with ***Ride Price Manager***!
   - That number is determined by ride rating, ride age, and other factors.
 - You can configure the plugin via the "Ride Price Manager" _control panel_, which is available **under the Map Dropdown** on the top bar. There, you can:
   - disable/re-enable the plugin.
+  - make the plugin ignore free rides. It's useful to make transport rides free, as guests will always take them, no matter how unhappy or unsatisfied they are.
   - tell the plugin to set lower prices if your park also charges admission.
   - tell the plugin to set lower prices to make guests think your rides are "Good Value".
   - add a "Lazy Tax" to decrease ride prices. This is for people that think this plugin is overpowered or just want to re-balance the game a little bit.
   - allow prices greater than $20.00 for high value rides.
     - Guests are willing to pay more than $20 for some rides, but you can't set a price to more than $20 via the UI. This allows the plugin to bypass that check.
-  - ignore free rides. It has certain benefits to make transport rides free, as guests will always take them, no matter how unhappy or unsatisfied they are.
 
 ## Installation
 1. Get a new (enough) version of OpenRCT2 (`v0.2.6-c3921d9` from 2020/05/29 or newer)

@@ -21,7 +21,7 @@ const updateRidePrice = function (ride: Ride): void {
         return;
     }
 
-    if(ride.price[0] === 0 && config.getIgnoreFreeRidesEnabled()){
+    if (ride.price[0] === 0 && config.getIgnoreFreeRidesEnabled()) {
         // Ignore free rides.
         return;
     }
