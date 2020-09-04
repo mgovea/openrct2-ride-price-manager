@@ -16,16 +16,15 @@ const showWindow = function (): void {
     const windowDesc: WindowDesc = {
         classification: 'ride_management',
         width: 240,
-        height: 125,
+        height: 110,
         title: 'Ride Price Manager',
         widgets: [
             makePluginEnabledCheckbox(20),
             makeIgnoreFreeRidesCheckbox(45),
-            makeParkAdmissioCheckbox(60),
-            makeGoodValueCheckbox(75),
-            makeLazyTaxLabel(90),
-            makeLazyTaxDropdown(90),
-            makeUnboundPriceCheckbox(107),
+            makeGoodValueCheckbox(60),
+            makeLazyTaxLabel(75),
+            makeLazyTaxDropdown(75),
+            makeUnboundPriceCheckbox(92),
         ],
         onClose: () => { window = undefined; },
     };
@@ -105,18 +104,6 @@ const makeLazyTaxDropdown = function (y: number): DropdownWidget {
             config.setLazyTaxFactor(lazyTaxOptions[index].n);
         },
     }
-}
-
-const makeParkAdmissioCheckbox = function (y: number): CheckboxWidget {
-    return makeCheckbox(
-        y,
-        "Guests are only willing to pay 1/4 as much if they paid for admission",
-        `Does your park charge admission?`,
-        config.getParkAdmissionEnabled(),
-        (isChecked: boolean) => {
-            config.setParkAdmissionEnabled(isChecked);
-        },
-    );
 }
 
 const makePluginEnabledCheckbox = function (y: number): CheckboxWidget {

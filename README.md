@@ -14,14 +14,13 @@ Your troubles are long gone with ***Ride Price Manager***!
 - You can configure the plugin via the "Ride Price Manager" _control panel_, which is available **under the Map Dropdown** on the top bar. There, you can:
   - disable/re-enable the plugin.
   - make the plugin ignore free rides. It's useful to make transport rides free, as guests will always take them, no matter how unhappy or unsatisfied they are.
-  - tell the plugin to set lower prices if your park also charges admission.
   - tell the plugin to set lower prices to make guests think your rides are "Good Value".
   - add a "Lazy Tax" to decrease ride prices. This is for people that think this plugin is overpowered or just want to re-balance the game a little bit.
   - allow prices greater than $20.00 for high value rides.
     - Guests are willing to pay more than $20 for some rides, but you can't set a price to more than $20 via the UI. This allows the plugin to bypass that check.
 
 ## Installation
-1. Get a new (enough) version of OpenRCT2 (`v0.2.6-c3921d9` from 2020/05/29 or newer)
+1. Install a compatible version of OpenRCT2 (requires [`0.3.0-develop-bc33ef3`](https://openrct2.org/downloads/develop/v0.3.0-bc33ef3) released 2020/09/03 or [newer](https://openrct2.org/downloads/develop/latest))
    - Downloads are here: https://openrct2.org/downloads
 2. Download the plugin file
    - Get [`/build/ride-price-manager.js`](build/ride-price-manager.js)
@@ -35,11 +34,8 @@ Your troubles are long gone with ***Ride Price Manager***!
 ## Possible Future Plans
 - Check if this works with server play
   - And make it work with server play
-- Automatically detect if a park charges admission
-  - This will require an update in the plugin API
 - Automatically set park prices & allow configuration of a max admission price.
   - This would help early-game ramp-up.
-  - This will also require an update in the plugin API
 - Manage shop prices
   - To do this optimally, weather info would need to be added to the plugin API
   - Adding subscriptions for weather events in the API would help too
@@ -48,7 +44,7 @@ Your troubles are long gone with ***Ride Price Manager***!
 If you want to request a feature or find a bug, open an issue on GitHub (as long as one doesn't exist already for the same thing). And if you like the sound of one of the Possible Future Plans and want it to happen, it's cool if you open an issue for it.
 
 ## Contributing
-- Follow the first steps from Installation to get the correct version of OpenRCT2.
+- Follow the first steps from Installation to get a correct version of OpenRCT2.
 - Set `enable_hot_reloading = true` in your `/OpenRCT2/config.ini`
 - Preferrably, clone this repository from within your plugins folder.
   - Right now, OpenRCT2 only loads `.js` files (and not `.ts`) within the plugin folder, so I put this whole project within the `/plugin/` folder.
