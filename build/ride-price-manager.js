@@ -4,18 +4,18 @@
     var namespace = 'RidePriceManager';
     var configPrefix = namespace + '.';
     var goodValueEnabled = configPrefix + 'goodValueEnabled';
+    var ignoreFreeRidesEnabled = configPrefix + 'ignoreFreeRidesEnabled';
     var lazyTaxFactor = configPrefix + 'lazyTaxFactor';
     var parkAdmissionEnabled = configPrefix + 'parkAdmissionEnabled';
     var pluginEnabled = configPrefix + 'pluginEnabled';
     var unboundPriceEnabled = configPrefix + 'unboundPriceEnabled';
-    var ignoreFreeRidesEnabled = configPrefix + 'ignoreFreeRidesEnabled';
     var defaults = {
       goodValueEnabled: false,
+      ignoreFreeRidesEnabled: true,
       lazyTaxFactor: 0,
       parkAdmissionEnabled: false,
       pluginEnabled: true,
-      unboundPriceEnabled: false,
-      ignoreFreeRidesEnabled: false
+      unboundPriceEnabled: false
     };
     var lazyTaxOptions = [{
       s: '0%',
@@ -49,6 +49,12 @@
       setGoodValueEnabled: function (v) {
         return context.sharedStorage.set(goodValueEnabled, v);
       },
+      getIgnoreFreeRidesEnabled: function () {
+        return context.sharedStorage.get(ignoreFreeRidesEnabled, defaults.ignoreFreeRidesEnabled);
+      },
+      setIgnoreFreeRidesEnabled: function (v) {
+        return context.sharedStorage.set(ignoreFreeRidesEnabled, v);
+      },
       getLazyTaxFactor: function () {
         return context.sharedStorage.get(lazyTaxFactor, defaults.lazyTaxFactor);
       },
@@ -72,12 +78,6 @@
       },
       setUnboundPriceEnabled: function (v) {
         return context.sharedStorage.set(unboundPriceEnabled, v);
-      },
-      getIgnoreFreeRidesEnabled: function () {
-        return context.sharedStorage.get(ignoreFreeRidesEnabled, defaults.ignoreFreeRidesEnabled);
-      },
-      setIgnoreFreeRidesEnabled: function (v) {
-        return context.sharedStorage.set(ignoreFreeRidesEnabled, v);
       }
     };
 
@@ -140,7 +140,7 @@
         width: 240,
         height: 125,
         title: 'Ride Price Manager',
-        widgets: [makePluginEnabledCheckbox(20), makeParkAdmissioCheckbox(45), makeGoodValueCheckbox(60), makeLazyTaxLabel(75), makeLazyTaxDropdown(75), makeUnboundPriceCheckbox(92), makeIgnoreFreeRidesCheckbox(107)],
+        widgets: [makePluginEnabledCheckbox(20), makeIgnoreFreeRidesCheckbox(45), makeParkAdmissioCheckbox(60), makeGoodValueCheckbox(75), makeLazyTaxLabel(90), makeLazyTaxDropdown(90), makeUnboundPriceCheckbox(107)],
         onClose: function () {
           window = undefined;
         }
@@ -160,6 +160,12 @@
         isChecked: isChecked,
         onChange: onChange
       };
+    };
+
+    var makeIgnoreFreeRidesCheckbox = function (y) {
+      return makeCheckbox(y, "Prevent the plugin from affecting rides that are currently free. " + "Recommended for transport rides & scenarios with a Park Entrance Fee.", "Ignore free rides", config.getIgnoreFreeRidesEnabled(), function (isChecked) {
+        config.setIgnoreFreeRidesEnabled(isChecked);
+      });
     };
 
     var makeGoodValueCheckbox = function (y) {
@@ -215,12 +221,6 @@
     var makeUnboundPriceCheckbox = function (y) {
       return makeCheckbox(y, "Via the UI, the max price is $20.00 - Enable this to allow the plugin to set higher prices", "Allow unbound prices", config.getUnboundPriceEnabled(), function (isChecked) {
         config.setUnboundPriceEnabled(isChecked);
-      });
-    };
-
-    var makeIgnoreFreeRidesCheckbox = function (y) {
-      return makeCheckbox(y, "Having free transport rides has certain benefits.", "Ignore free rides", config.getIgnoreFreeRidesEnabled(), function (isChecked) {
-        config.setIgnoreFreeRidesEnabled(isChecked);
       });
     };
 
