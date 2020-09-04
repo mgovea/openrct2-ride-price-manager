@@ -16,7 +16,7 @@ const main = function (): void {
 registerPlugin({
     name: 'Ride Price Manager',
     version: '1.2',
-    authors: ['MarkG', 'Sadret'],
+    authors: ['mgovea', 'Sadret'],
     type: 'remote',
     licence: 'MIT',
     main: main

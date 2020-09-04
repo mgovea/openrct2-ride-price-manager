@@ -18,8 +18,12 @@
             "extensions": "js,ts"
         }
     },
-    "author": "",
-    "license": "ISC",
+    "author": "mgovea",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mgovea/openrct2-ride-price-manager.git"
+    },
     "devDependencies": {
         "@babel/cli": "^7.10.1",
         "@babel/core": "^7.10.1",
