@@ -33,8 +33,7 @@ const updateRidePrice = function (ride: Ride): void {
 
     // See /src/openrct2/peep/Guest.cpp for logic.
     // if (peep_flags & PEEP_FLAGS_HAS_PAID_FOR_PARK_ENTRY) value /= 4;
-    // TODO: see if the park charges for admission instead of using a config mode.
-    const value = config.getParkAdmissionEnabled()
+    const value = park.entranceFee > 0
         ? Math.floor(ride.value / 4)
         : ride.value;
 

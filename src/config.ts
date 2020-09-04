@@ -6,7 +6,6 @@ const configPrefix = namespace + '.';
 const goodValueEnabled = configPrefix + 'goodValueEnabled';
 const ignoreFreeRidesEnabled = configPrefix + 'ignoreFreeRidesEnabled';
 const lazyTaxFactor = configPrefix + 'lazyTaxFactor';
-const parkAdmissionEnabled = configPrefix + 'parkAdmissionEnabled';
 const pluginEnabled = configPrefix + 'pluginEnabled';
 const unboundPriceEnabled = configPrefix + 'unboundPriceEnabled';
 
@@ -14,7 +13,6 @@ const defaults = {
     goodValueEnabled: false,
     ignoreFreeRidesEnabled: true,
     lazyTaxFactor: 0,
-    parkAdmissionEnabled: false,
     pluginEnabled: true,
     unboundPriceEnabled: false,
 };
@@ -67,19 +65,6 @@ const config = {
 
     setLazyTaxFactor: function (v: number) {
         return context.sharedStorage.set(lazyTaxFactor, v);
-    },
-
-    /**
-     * Enable if your park charges for admission.
-     * Guests who pay for admission value rides about
-     * 1/4 as high as guests who didn't pay for admission.
-     */
-    getParkAdmissionEnabled: function (): boolean {
-        return context.sharedStorage.get(parkAdmissionEnabled, defaults.parkAdmissionEnabled);
-    },
-
-    setParkAdmissionEnabled: function (v: boolean) {
-        return context.sharedStorage.set(parkAdmissionEnabled, v);
     },
 
     /**
