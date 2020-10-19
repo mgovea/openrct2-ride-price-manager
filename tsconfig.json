@@ -3,7 +3,7 @@
         "allowSyntheticDefaultImports": true,
         "alwaysStrict": true,
         "forceConsistentCasingInFileNames": true,
-		"moduleResolution": "node",
+        "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,
@@ -15,10 +15,10 @@
         "strictPropertyInitialization": true
     },
     "exclude": [
-      "node_modules",
-      "**/node_modules/*"
+        "node_modules",
+        "**/node_modules/*"
     ],
-	"include": [
-		"src/**/*"
-	] 
+    "include": [
+        "src/**/*"
+    ]
 }
