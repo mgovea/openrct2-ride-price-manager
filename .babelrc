@@ -1,6 +1,0 @@
-{
-    "comments": false,
-    "presets": [
-        "@babel/typescript"
-    ]
-}
