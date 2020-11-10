@@ -46,15 +46,22 @@ If you want to request a feature or find a bug, open an issue on GitHub (as long
 ## Contributing
 - Follow the first steps from Installation to get a correct version of OpenRCT2.
 - Set `enable_hot_reloading = true` in your `/OpenRCT2/config.ini`
-- Preferrably, clone this repository from within your plugins folder.
-  - Right now, OpenRCT2 only loads `.js` files (and not `.ts`) within the plugin folder, so I put this whole project within the `/plugin/` folder.
-- Run `npm run watch build`
+  - It's typically in `C:\Users\{User}\Documents\OpenRCT2` on Windows.
+- Clone this repository wherever you'd like.
+- Put the TypeScript API declaration file (`openrct2.d.ts`) in the `lib` folder.
+  - The easy way is to copy it from the installation folder (e.g. `C:\Program Files\OpenRCT2\openrct2.d.ts`)
+  - The cool way is to make a symbolic link so that the copy in `lib` stays up to date whenever the game is updated. To do this (on Windows),
+    - Run a Command Prompt as Administrator
+    - `cd` to the repository
+    - `mklink .\lib\openrct2.d.ts "C:\Program Files\OpenRCT2\openrct2.d.ts"`
+- Edit `ride-price-manager\rollup.config.dev.js` so that it puts the build in your plugin folder.
+- Run `npm run watch`
 - Make your changes.
 - Make sure to update the version number in `package.json` and in `index.js`.
-- Make a Pull Request.
+- Commit your changes (without including the rollup config) and Make a Pull Request.
 
 ## Thanks
 - Thanks to [OpenRCT2](https://github.com/OpenRCT2/OpenRCT2) for revitalizing a sweet game & releasing the plugin API.
-- Thanks to **oli414** for the [boilerplate template](https://github.com/oli414/openrct2-plugin-boilerplate). I adapted it to fit TypeScript for this project before **wisnia74** came out with [a very well made and comprehensive TypeScript plugin template](https://github.com/wisnia74/openrct2-typescript-mod-template). You should definitely check that one out if you want to make your own plugin.
+- Thanks to **oli414** for the [boilerplate template](https://github.com/oli414/openrct2-plugin-boilerplate). I adapted it to fit TypeScript for this project initally, before **wisnia74** came out with [a very well made and comprehensive TypeScript plugin template](https://github.com/wisnia74/openrct2-typescript-mod-template), which I now use for this plugin. You should definitely use that one if you want to make your own plugin.
 - Thanks to [Marcel Vos](https://www.youtube.com/channel/UCBlXovStrlQkVA2xJEROUNg) for getting me back into RCT2.
 - And many many thanks to [IntelOrca](https://github.com/IntelOrca) for all of the Plugin support. The Plugin API is super fun, and I can't wait to see what all people make for it.
