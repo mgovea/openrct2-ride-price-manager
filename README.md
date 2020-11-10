@@ -22,9 +22,7 @@ Your troubles are long gone with ***Ride Price Manager***!
 ## Installation
 1. Install a compatible version of OpenRCT2 (requires [`0.3.0-develop-bc33ef3`](https://openrct2.org/downloads/develop/v0.3.0-bc33ef3) released 2020/09/03 or [newer](https://openrct2.org/downloads/develop/latest))
    - Downloads are here: https://openrct2.org/downloads
-2. Download the plugin file
-   - Get [`/build/ride-price-manager.js`](build/ride-price-manager.js)
-   - Or just right-click [this link](https://raw.githubusercontent.com/mgovea/openrct2-ride-price-manager/master/build/ride-price-manager.js) & "Save link as"
+2. Download the plugin file here: https://github.com/mgovea/openrct2-ride-price-manager/releases/latest
 3. Put that file in your OpenRCT2 `plugin` folder.
    - It's typically in `C:\Users\{User}\Documents\OpenRCT2` on Windows.
    - For more info, see [OpenRCT2's info on Plugins](https://github.com/OpenRCT2/OpenRCT2/blob/develop/distribution/scripting.md).
