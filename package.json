@@ -1,9 +1,10 @@
 {
   "name": "ride-price-manager",
-  "version": "1.2.1",
-  "description": "",
+  "version": "1.2.2",
+  "description": "Ride Price Manager is a plugin for OpenRCT2 that automagically updates the prices of all your rides",
   "main": "app.js",
   "scripts": {
+    "start": "npm run watch",
     "watch": "nodemon --watch ./src --ext js,ts",
     "build": "npm run lint && rollup --config rollup.config.prod.js",
     "build:dev": "rollup --config rollup.config.dev.js",

@@ -1,6 +1,6 @@
 /// <reference path="../lib/openrct2.d.ts" />
 
-import fixRidePrices from './fixRidePrices';
+import { updateRidePrices } from './ridePriceFunctions';
 import showWindow from './window';
 
 function main(): void {
@@ -9,10 +9,10 @@ function main(): void {
   });
 
   context.subscribe('interval.day', () => {
-    fixRidePrices();
+    updateRidePrices();
   });
 
-  fixRidePrices();
+  updateRidePrices();
 }
 
 export default main;

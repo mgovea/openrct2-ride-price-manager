@@ -2,25 +2,35 @@
 
 import config from './config';
 
-function fixRidePrices(): void {
+function updateRidePrices(): void {
   if (!config.getPluginEnabled()) {
     return;
   }
+  map.rides.map((ride: Ride) => { // eslint-disable-line array-callback-return
+    if (ride.price[0] === 0 && config.getIgnoreFreeRidesEnabled()) {
+      // Ignore free rides.
+      return;
+    }
+    updateRidePrice(ride);
+  });
+}
+
+function forceUpdateRidePrices(): void {
   map.rides.map(updateRidePrice);
 }
 
-function updateRidePrice(ride: Ride): void {
-  if (!config.getPluginEnabled()) {
-    return;
-  }
+function makeRidesFree(): void {
+  map.rides.map((ride: Ride) => { // eslint-disable-line array-callback-return
+    // The API doesn't detect deep changes, so we need a new array.
+    const ridePrices = ride.price.slice(0);
+    ridePrices[0] = 0;
+    ride.price = ridePrices; // eslint-disable-line no-param-reassign
+  });
+}
 
+function updateRidePrice(ride: Ride): void {
   if (ride.classification !== 'ride') {
     // Ignore shops & facilites.
-    return;
-  }
-
-  if (ride.price[0] === 0 && config.getIgnoreFreeRidesEnabled()) {
-    // Ignore free rides.
     return;
   }
 
@@ -58,4 +68,8 @@ function updateRidePrice(ride: Ride): void {
   ride.price = ridePrices; // eslint-disable-line no-param-reassign
 }
 
-export default fixRidePrices;
+export {
+  updateRidePrices,
+  forceUpdateRidePrices,
+  makeRidesFree,
+};

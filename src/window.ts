@@ -1,22 +1,23 @@
 /// <reference path="../lib/openrct2.d.ts" />
 
 import config, { LazyTaxOption, lazyTaxOptions } from './config'; // eslint-disable-line no-unused-vars
+import { forceUpdateRidePrices, makeRidesFree } from './ridePriceFunctions';
 
+const windowTag = 'ride_management';
 const lQuote = decodeURI('%E2%80%9C');
 const rQuote = decodeURI('%E2%80%9D');
 
-let window: Window | undefined;
-
 function showWindow(): void {
+  const window = ui.getWindow(windowTag);
   if (window) {
     window.bringToFront();
     return;
   }
 
   const windowDesc: WindowDesc = {
-    classification: 'ride_management',
+    classification: windowTag,
     width: 240,
-    height: 110,
+    height: 159,
     title: 'Ride Price Manager',
     widgets: [
       makePluginEnabledCheckbox(20),
@@ -25,10 +26,11 @@ function showWindow(): void {
       makeLazyTaxLabel(75),
       makeLazyTaxDropdown(75),
       makeUnboundPriceCheckbox(92),
+      makeRecalculateButton(107),
+      makeAllRidesFreeButton(132),
     ],
-    onClose: () => { window = undefined; },
   };
-  window = ui.openWindow(windowDesc);
+  ui.openWindow(windowDesc);
 }
 
 function makeCheckbox(
@@ -127,6 +129,44 @@ function makeUnboundPriceCheckbox(y: number): CheckboxWidget {
     (isChecked: boolean) => {
       config.setUnboundPriceEnabled(isChecked);
     },
+  );
+}
+
+function makeFullWidthButton(
+  y: number,
+  tooltip: string,
+  text: string,
+  onClick: () => void,
+): ButtonWidget {
+  // @ts-ignore
+  return {
+    type: 'button',
+    x: 5,
+    y,
+    width: 230,
+    height: 21,
+    text,
+    tooltip,
+    isPressed: false,
+    onClick,
+  };
+}
+
+function makeRecalculateButton(y: number): ButtonWidget {
+  return makeFullWidthButton(
+    y,
+    'Immediately set the price for all rides, overriding the "Ignore Free" preference',
+    'Force Recalculate ALL Prices Now',
+    forceUpdateRidePrices,
+  );
+}
+
+function makeAllRidesFreeButton(y: number): ButtonWidget {
+  return makeFullWidthButton(
+    y,
+    'Immediately make all rides free.',
+    'Make ALL Rides FREE',
+    makeRidesFree,
   );
 }
 
