@@ -34,7 +34,15 @@
         "code": 120
       }
     ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
     "no-undef": 0,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ],
     "no-use-before-define": [
       "error",
       "nofunc"
