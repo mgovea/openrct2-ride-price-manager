@@ -21,10 +21,7 @@ function forceUpdateRidePrices(): void {
 
 function makeRidesFree(): void {
   map.rides.map((ride: Ride) => { // eslint-disable-line array-callback-return
-    // The API doesn't detect deep changes, so we need a new array.
-    const ridePrices = ride.price.slice(0);
-    ridePrices[0] = 0;
-    ride.price = ridePrices; // eslint-disable-line no-param-reassign
+    setRidePrice(ride, 0);
   });
 }
 
@@ -62,10 +59,20 @@ function updateRidePrice(ride: Ride): void {
     priceInDimes = Math.min(priceInDimes, 200);
   }
 
-  // The API doesn't detect deep changes, so we need a new array.
-  const ridePrices = ride.price.slice(0);
-  ridePrices[0] = priceInDimes;
-  ride.price = ridePrices; // eslint-disable-line no-param-reassign
+  setRidePrice(ride, priceInDimes);
+}
+
+function setRidePrice(ride: Ride, priceInDimes: number): void {
+  // Set the price via an action (so it works in multiplayer)
+  context.executeAction(
+    'ridesetprice',
+    {
+      ride: ride.id,
+      price: priceInDimes,
+      isPrimaryPrice: true,
+    },
+    () => { },
+  );
 }
 
 export {
