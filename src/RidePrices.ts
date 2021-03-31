@@ -17,7 +17,7 @@ export default class RidePrices {
   }
 
   public static forceUpdateRidePrices(): void {
-    map.rides.map(RidePrices.setRidePrice);
+    map.rides.map((ride: Ride) => RidePrices.setRidePrice(ride));
   }
 
   public static makeRidesFree(): void {
