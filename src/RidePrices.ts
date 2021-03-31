@@ -12,31 +12,49 @@ export default class RidePrices {
         // Ignore free rides.
         return;
       }
-      RidePrices.updateRidePrice(ride);
+      RidePrices.setRidePrice(ride);
     });
   }
 
   public static forceUpdateRidePrices(): void {
-    map.rides.map(RidePrices.updateRidePrice);
+    map.rides.map(RidePrices.setRidePrice);
   }
 
   public static makeRidesFree(): void {
-    map.rides.map((ride: Ride) => { // eslint-disable-line array-callback-return
-      RidePrices.mutateRidePrice(ride, 0);
-    });
+    map.rides.map((ride: Ride) => RidePrices.setRidePrice(ride, 0));
   }
 
-  private static updateRidePrice(ride: Ride): void {
-    if (ride.classification !== 'ride') {
-      // Ignore shops & facilites.
+  private static setRidePrice(ride: Ride, priceInDimes?: number): void {
+    if (!RidePrices.isOpenAndRatedRide(ride)) {
       return;
     }
 
-    if (ride.status !== 'open' || ride.excitement === -1) {
-      // Don't change the price of closed/testing and unrated rides.
-      return;
+    if (priceInDimes === undefined) {
+      priceInDimes = RidePrices.calculateRidePrice(ride);
     }
 
+    // Set the price via an action (so it works in multiplayer)
+    context.executeAction(
+      'ridesetprice',
+      {
+        ride: ride.id,
+        price: priceInDimes,
+        isPrimaryPrice: true,
+      },
+      () => { },
+    );
+  }
+
+  private static isOpenAndRatedRide(ride: Ride): boolean {
+    // Ignore shops & facilites.
+    return ride.classification === 'ride'
+      // Ignore closed/testing rides.
+      && ride.status === 'open'
+      // Ignore unrated rides.
+      && ride.excitement !== -1;
+  }
+
+  private static calculateRidePrice(ride: Ride): number {
     // See /src/openrct2/peep/Guest.cpp for logic.
     // if (peep_flags & PEEP_FLAGS_HAS_PAID_FOR_PARK_ENTRY) value /= 4;
     const value = park.entranceFee > 0
@@ -60,20 +78,7 @@ export default class RidePrices {
       priceInDimes = Math.min(priceInDimes, 200);
     }
 
-    RidePrices.mutateRidePrice(ride, priceInDimes);
-  }
-
-  private static mutateRidePrice(ride: Ride, priceInDimes: number): void {
-    // Set the price via an action (so it works in multiplayer)
-    context.executeAction(
-      'ridesetprice',
-      {
-        ride: ride.id,
-        price: priceInDimes,
-        isPrimaryPrice: true,
-      },
-      () => { },
-    );
+    return priceInDimes;
   }
 };
 
