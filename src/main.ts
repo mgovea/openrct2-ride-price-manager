@@ -4,17 +4,21 @@ import RidePrices from './RidePrices';
 import showWindow from './window';
 
 function main(): void {
+  // Headless server homies don't need to register UI, you feel me?
   if (ui) {
     ui.registerMenuItem('Ride Price Manager', () => {
       showWindow();
     });
   }
 
-  context.subscribe('interval.day', () => {
-    RidePrices.updateRidePrices();
-  });
+  // Only the server/singleplayer automatically triggers prices updates.
+  if (network.mode !== 'client') {
+    context.subscribe('interval.day', () => {
+      RidePrices.updateRidePrices();
+    });
 
-  RidePrices.updateRidePrices();
+    RidePrices.updateRidePrices();
+  }
 }
 
 export default main;
