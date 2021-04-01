@@ -57,7 +57,7 @@ export default class RidePrices {
   private static calculateRidePrice(ride: Ride): number {
     // See /src/openrct2/peep/Guest.cpp for logic.
     // if (peep_flags & PEEP_FLAGS_HAS_PAID_FOR_PARK_ENTRY) value /= 4;
-    const value = park.entranceFee > 0
+    const value = park.entranceFee > 0 && !park.getFlag('freeParkEntry')
       ? Math.floor(ride.value / 4)
       : ride.value;
 
