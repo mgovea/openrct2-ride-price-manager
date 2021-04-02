@@ -1,18 +1,24 @@
 /// <reference path="../lib/openrct2.d.ts" />
 
-import { updateRidePrices } from './ridePriceFunctions';
+import RidePrices from './RidePrices';
 import showWindow from './window';
 
 function main(): void {
-  ui.registerMenuItem('Ride Price Manager', () => {
-    showWindow();
-  });
+  // Headless server homies don't need to register UI, you feel me?
+  if (ui) {
+    ui.registerMenuItem('Ride Price Manager', () => {
+      showWindow();
+    });
+  }
 
-  context.subscribe('interval.day', () => {
-    updateRidePrices();
-  });
+  // Only the server/singleplayer automatically triggers prices updates.
+  if (network.mode !== 'client') {
+    context.subscribe('interval.day', () => {
+      RidePrices.updateRidePrices();
+    });
 
-  updateRidePrices();
+    RidePrices.updateRidePrices();
+  }
 }
 
 export default main;

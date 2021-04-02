@@ -1,7 +1,7 @@
 /// <reference path="../lib/openrct2.d.ts" />
 
 import config, { LazyTaxOption, lazyTaxOptions } from './config'; // eslint-disable-line no-unused-vars
-import { forceUpdateRidePrices, makeRidesFree } from './ridePriceFunctions';
+import RidePrices from './RidePrices';
 
 const windowTag = 'ride_management';
 const lQuote = decodeURI('%E2%80%9C');
@@ -157,7 +157,7 @@ function makeRecalculateButton(y: number): ButtonWidget {
     y,
     'Immediately set the price for all rides, overriding the "Ignore Free" preference',
     'Force Recalculate ALL Prices Now',
-    forceUpdateRidePrices,
+    RidePrices.forceUpdateRidePrices,
   );
 }
 
@@ -166,7 +166,7 @@ function makeAllRidesFreeButton(y: number): ButtonWidget {
     y,
     'Immediately make all rides free.',
     'Make ALL Rides FREE',
-    makeRidesFree,
+    RidePrices.makeRidesFree,
   );
 }
 
