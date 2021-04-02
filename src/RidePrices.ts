@@ -30,6 +30,7 @@ export default class RidePrices {
     }
 
     if (priceInDimes === undefined) {
+      // eslint-disable-next-line no-param-reassign
       priceInDimes = RidePrices.calculateRidePrice(ride);
     }
 
@@ -80,5 +81,4 @@ export default class RidePrices {
 
     return priceInDimes;
   }
-};
-
+}
