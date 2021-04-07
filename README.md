@@ -40,7 +40,7 @@ This plugin is now updated to work in Multiplayer! However, there are some thing
 - Any player with the plugin can still use the "Force recalculate" and "Make rides free" buttons. There are no permissions. File an issue if you are dealing with griefers.
 - For the recalculate button, the client's config is used, but will be bulldozed when server recalculates prices on the next in-game day.
 
-To set the server config, you will need to edit the `plugin.store.json` file (typically in `C:\Users\{User}\Documents\OpenRCT2`). If that file doesn't exist, use the following as the file contents. If some keys already exist, just add the `RidePriceManager` block to what's already there. And don't mess up the commas!
+If you run the server in a "headless state" (you're not playing on the host), you will have to manually edit the config file. In this case, you will need to edit the `plugin.store.json` file (typically in `C:\Users\{User}\Documents\OpenRCT2`). If that file doesn't exist, use the following as the file contents. If some keys already exist, just add the `RidePriceManager` block to what's already there. And don't mess up the commas!
 
 ```
 {
@@ -55,6 +55,7 @@ To set the server config, you will need to edit the `plugin.store.json` file (ty
 ```
 
 ## Possible Future Plans
+- Address any open [issues](https://github.com/mgovea/openrct2-ride-price-manager/issues).
 - Have better tools for managing the price of transport rides.
 - Automatically set park prices & allow configuration of a max admission price.
   - This would help early-game ramp-up.
