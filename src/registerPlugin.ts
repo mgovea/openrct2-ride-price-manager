@@ -5,7 +5,7 @@ import main from './main';
 registerPlugin({
   name: 'Ride Price Manager',
   version: '1.3.1',
-  authors: ['mgovea', 'Sadret'],
+  authors: ['mgovea', 'Sadret', 'kscheel'],
   type: 'remote',
   licence: 'MIT',
   main,
