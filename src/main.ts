@@ -5,7 +5,7 @@ import showWindow from './window';
 
 function main(): void {
   // Headless server homies don't need to register UI, you feel me?
-  if (ui) {
+  if (typeof ui !== 'undefined') {
     ui.registerMenuItem('Ride Price Manager', () => {
       showWindow();
     });
