@@ -26,7 +26,7 @@
     "@typescript-eslint/parser": "^4.22.1",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.2",
     "nodemon": "^2.0.7",
     "rollup": "^2.47.0",
     "rollup-plugin-terser": "^7.0.2",
