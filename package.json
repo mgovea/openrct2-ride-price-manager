@@ -22,7 +22,7 @@
   "homepage": "https://github.com/mgovea/openrct2-ride-price-manager#readme",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.3",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.3",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
